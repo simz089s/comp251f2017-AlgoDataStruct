@@ -52,17 +52,18 @@
 	\section{Stable marriage matching problem}
 	
 		\paragraph{a)}
-		\begin{center}
-		Algorithm: f()
-		\end{center}
-        \begin{algorithm}[caption={}, label={alg1}]
-Input: 
-Output: 
-
-
-        \end{algorithm}
+		\begin{align*}
+		m_1 : w_1 , w_2 , w_3 , w_4 \\
+		m_2 : w_2 , w_1 , w_3 , w_4 \\
+		m_3 : w_3 , w_2 , w_1 , w_4 \\
+		m_4 : w_4 , w_2 , w_3 , w_1 \\
+		w_1 : w_4 , w_2 , w_3 , w_1 \\
+		w_2 : w_1 , w_4 , w_3 , w_2 \\
+		w_3 : w_1 , w_2 , w_4 , w_3 \\
+		w_4 : w_1 , w_2 , w_3 , w_4 \\
+		\end{align*}
     
-    .
+    Simply assume each man has a different woman as first choice (and they are respectively the worst choice of the woman). Since the algorithm is ran on the men, each proposes to their first choice one after the other and the women must accept. The men also do not break up any pairings as they are all different. The algorithm terminates, so the rest doesn't even matter.
 		
 		\paragraph{b)}
 		.
