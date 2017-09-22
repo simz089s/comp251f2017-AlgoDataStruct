@@ -5,6 +5,7 @@
 \usepackage{amsthm}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\usepackage{cancel}
 
 \usepackage{mathtools}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
@@ -69,32 +70,31 @@
 		.
 		
 		\paragraph{c)}
-		\begin{center}
-		Algorithm: f()
-		\end{center}
-		\begin{algorithm}[caption={}, label={alg2}]
-Input: 
-Output: 
-
-
-		\end{algorithm}
-		
-		\paragraph{d)}
-		
+		\begin{align*}
+		m_1 : m_2 , m_3 , m_4 \\
+		m_2 : m_3 , m_4 , m_1 \\
+		m_3 : m_4 , m_2 , m_1 \\
+		m_4 : m_1 , m_2 , m_3 \\
+		\end{align*}
+		While the algorithm terminates, it is not a stable matching.
+		\begin{align*}
+		m_1 : \cancel{m_2} , \underline{m_3} , \cancel{m_4} \\
+		m_2 : \cancel{m_3} , \underline{m_4} , \cancel{m_1} \\
+		m_3 : \cancel{m_4} , \cancel{m_2} , \underline{m_1} \\
+		m_4 : \cancel{m_1} , \underline{m_2} , \cancel{m_3} \\
+		\end{align*}
 		
 	\section{}
 	
 		\paragraph{a)}
-		.
-		\begin{center}
-		Algorithm: f()
-		\end{center}
-		\begin{algorithm}[caption={}, label={alg3}]
-Input: 
-Output: 
-
-
-		\end{algorithm}
+		\begin{align*}
+		\sqrt{n} + n\sqrt{n} &= \sqrt{n} (1+n) \\
+		&\leq n(1+n) \\
+		&\leq n(n+n) \\
+		&= n^2 + n^2 \\
+		&= 2n
+		\end{align*}
+		Thus, for $c = 2$ and $n_0 = 3$.
 		
 		\paragraph{b)}
 		.
@@ -102,10 +102,6 @@ Output:
 	\section{}
 	
 		\paragraph{a)}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=\textwidth]{hw1.pdf}
-		\end{figure}
 	.
 		
 		\paragraph{b)}
@@ -114,13 +110,22 @@ Output:
 	\section{}
 	
 		\paragraph{a)}
-		.
-		\begin{algorithm}[caption={f()}, label={alg4}]
-Input: 
-Output: 
-
-
-		\end{algorithm}
+		Big-Oh of a sum of function is the same as big-Oh of the fastest growing function. We can see $O(f(n))$ as the set of all functions that are upper-bounded by $f(n)$.
+		$O(f(n)+g(n)) = O(max(f(n),g(n)))$
+		So on one hand if $f(n) > g(n)$ (as in grows faster) then
+		\begin{align*}
+		O(f(n)+g(n)) &= O(f(n)) \\
+		O(f(n)) &= f(n) + O(g(n)) \\
+		& = f(n) \\
+		\end{align*}
+		as $f(n) \ge g(n)$ so any function that is $O(g(n))$ will still be dominated by the faster growing $f(n)$.
+		On the other hand, if $g(n)$ dominates over $f(n)$, then
+		\begin{align*}
+		O(f(n)+g(n)) &= O(g(n)) \\
+		O(g(n)) &= f(n) + O(g(n)) \\
+		& = O(g(n)) \\
+		\end{align*}
+		as since $g(n)$ grows faster than $f(n)$, there will be at least one function $O(g(n))$ that exists that grows faster than $f(n)$ thus $f(n)$ doesn't matter and is dominated by the set of functions $O(g(n))$.
 		
 		\paragraph{b)}
 		.
