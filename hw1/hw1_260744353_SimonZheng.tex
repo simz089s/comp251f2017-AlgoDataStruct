@@ -97,12 +97,32 @@
 		Thus, for $c = 2$ and $n_0 = 3$.
 		
 		\paragraph{b)}
-		.
+		On one hand,
+		\begin{align*}
+		(n + \log_2 n)^5 \geq n^5 + (\log_2 n)^5 \geq n^5 \\
+		n^5 = O((n + \log_2 n)^5)
+		\end{align*}
+		For $c = 1, n_0 = 1$.
+		On the other hand,
+		\begin{align*}
+		(n + \log_2 n)^5 \leq (n+n)^5 = 2^5 n^5 \\
+		(n + \log_2 n)^5 = O(n^5)
+		\end{align*}
+		For $c = 2^5, n_0 = 1$.
 		
 	\section{}
 	
 		\paragraph{a)}
-	.
+		\begin{align*}
+		n! &= 1 \times 2 \times ... \times (n-1) \times n \\
+		n^n &= n \times n \times ...n\ times... \times n \times n \\
+		\end{align*}
+		So,
+		\begin{align*}
+		\lim\limits_{n\to\infty}\frac{n!}{n^n} &= \lim\limits_{n\to\infty}\frac{1 \times 2 \times ... \times (n-1) \times n}{n \times n \times ... \times n\qquad\ \times n} \\
+		&= 0
+		\end{align*}
+		Therefore, $n! = o(n^n)$.
 		
 		\paragraph{b)}
 		.
