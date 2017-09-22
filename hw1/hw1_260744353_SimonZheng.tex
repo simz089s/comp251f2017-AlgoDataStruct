@@ -64,10 +64,10 @@
 		w_4 : w_1 , w_2 , w_3 , w_4 \\
 		\end{align*}
     
-    Simply assume each man has a different woman as first choice (and they are respectively the worst choice of the woman). Since the algorithm is ran on the men, each proposes to their first choice one after the other and the women must accept. The men also do not break up any pairings as they are all different. The algorithm terminates, so the rest doesn't even matter.
+    	Simply assume each man has a different woman as first choice (and they are respectively the worst choice of the woman). Since the algorithm is ran on the men, each proposes to their first choice one after the other and the women must accept. The men also do not break up any pairings as they are all different. The algorithm terminates, so the rest doesn't even matter.
 		
 		\paragraph{b)}
-		.
+		If every woman has their best choice, then there are two cases. One, every man had a different woman as their first choice, and they are respectively also the first choice of their woman. Second case, every man proposed to every woman. But a woman that has been proposed by her first choice will never change partners after that.
 		
 		\paragraph{c)}
 		\begin{align*}
@@ -83,6 +83,7 @@
 		m_3 : \cancel{m_4} , \cancel{m_2} , \underline{m_1} \\
 		m_4 : \cancel{m_1} , \underline{m_2} , \cancel{m_3} \\
 		\end{align*}
+		$m_2$ prefers $m_3$ and vice-versa, yet they are not matched together.
 		
 	\section{}
 	
@@ -135,18 +136,28 @@
 	
 		\paragraph{a)}
 		\begin{align*}
-		n! &= 1 \times 2 \times ... \times (n-1) \times n \\
-		n^n &= n \times n \times ...n\ times... \times n \times n \\
+		\\
 		\end{align*}
-		So,
+		,
 		\begin{align*}
-		\lim\limits_{n\to\infty}\frac{n!}{n^n} &= \lim\limits_{n\to\infty}\frac{1 \times 2 \times ... \times (n-1) \times n}{n \times n \times ... \times n\qquad\ \times n} \\
-		&= 0
+		\\
 		\end{align*}
-		Therefore, $n! = o(n^n)$.
+		.
 		
 		\paragraph{b)}
-		.
+		By using limits and little-oh to disprove this,
+		\begin{align*}
+		\lim\limits_{n\to\infty}\frac{\log_2 n^5}{(\log_2 n)^5} &= \lim\limits_{n\to\infty}\frac{5\log_2 n}{(\log_2 n)^5} \\
+		&= 5 \lim\limits_{n\to\infty}\frac{1}{(\log_2 n)^4} \\
+		&= 0
+		\end{align*}
+		Thus, if $\log_2 n^5$ is $o((\log_2 n)^5)$, then $(\log_2 n)^5$ cannot be $O(\log_2 n^5)$.
+		
+		\paragraph{c)}
+		
+		
+		\paragraph{d)}
+		
 		
 	\section{}
 	
@@ -160,6 +171,7 @@
 		& = f(n) \\
 		\end{align*}
 		as $f(n) \ge g(n)$ so any function that is $O(g(n))$ will still be dominated by the faster growing $f(n)$.
+		
 		On the other hand, if $g(n)$ dominates over $f(n)$, then
 		\begin{align*}
 		O(f(n)+g(n)) &= O(g(n)) \\
@@ -170,12 +182,11 @@
 		
 		\paragraph{b)}
 		.
+	
+	\section{}
 		
-		\begin{algorithm}[caption={f()}, label={alg5}]
-Input: 
-Output: 
-
-
-		\end{algorithm}
+		\paragraph{}
+		From the base case, we can see that it should apply for any $c$.
+		But in the induction step,
 		
 \end{document}
