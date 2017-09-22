@@ -167,7 +167,13 @@
 		Therefore, $n^{\frac{1}{n}} = \Theta(1)$.
 		
 		\paragraph{d)}
-		
+		This is false, as
+		\begin{align*}
+		\lim\limits_{n\to\infty}\frac{2^{(\log_2n)^2}}{n^{100}} &= \lim\limits_{n\to\infty}\frac{\log_2(2^{(\log_2n)^2})}{\log_2n^{100}} \\
+		&= \lim\limits_{n\to\infty}\frac{(\log_2n)^2}{100\log_2n} \\
+		&= \infty
+		\end{align*}
+		Thus, $n^{100} = o(2^{(\log_2n)^2})$.
 		
 	\section{}
 	
