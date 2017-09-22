@@ -110,6 +110,27 @@
 		\end{align*}
 		For $c = 2^5, n_0 = 1$.
 		
+		\paragraph{c)}
+		\begin{align*}
+		n! &= 1 \times 2 \times ... \times (n-1) \times n \\
+		n^n &= n \times n \times ...n\ times... \times n \times n \\
+		\end{align*}
+		So,
+		\begin{align*}
+		\lim\limits_{n\to\infty}\frac{n!}{n^n} &= \lim\limits_{n\to\infty}\frac{1 \times 2 \times ... \times (n-1) \times n}{n \times n \times ... \times n\qquad\ \times n} \\
+		&= 0
+		\end{align*}
+		Therefore, $n! = o(n^n)$.
+		
+		\paragraph{d)}
+		Let us use de L'Hôpital's rule.
+		\begin{align*}
+		\lim\limits_{n\to\infty}\frac{\log_2 n}{n^{1/100}} &= \lim\limits_{n\to\infty}\frac{1/n}{1/(100n^{99/100})} \\
+		&= \lim\limits_{n\to\infty}\frac{100n^{99/100}}{n} \\
+		&= 100 \lim\limits_{n\to\infty}\frac{1}{n^{1/100}} \\
+		&= 0
+		\end{align*}
+		
 	\section{}
 	
 		\paragraph{a)}
