@@ -143,10 +143,6 @@
 		&= 0
 		\end{align*}
 		for $n_0 = 0, c = 1$.
-		\begin{align*}
-		\\
-		\end{align*}
-		.
 		
 		\paragraph{b)}
 		By using limits and little-oh to disprove this,
@@ -185,21 +181,26 @@
 		as since $g(n)$ grows faster than $f(n)$, there will be at least one function $O(g(n))$ that exists that grows faster than $f(n)$ thus $f(n)$ doesn't matter and is dominated by the set of functions $O(g(n))$.
 		
 		\paragraph{b)}
-		.
+		For the product, constants (adding to or multiplying the function) are ignored as they don't change the growth order of the function, but multiplying functions do. Any function $O(g(n))$ does not grow faster than $g(n)$ thus $f(n) \times O(g(n))$ will never grow faster than $f(n) \times g(n)$. Therefore, $f(n) \times O(g(n)) = O(f(n) \times g(n)$.
 	
 	\section{}
 		
 		\paragraph{}
-		From the base case, we can see that it should apply for any $c$.
+		From the base case, we can see that it should apply for any $c \geq 1$.
 		\begin{align*}
-		1 = c \cdot 1
+		n^2 = O(n) \\
+		n^2 \leq c \cdot n \\
+		1 \leq c \cdot 1 \\		
 		\end{align*}
-		so $n_0 = 1$.
+		so we set $n_0 = 1$.
+		
 		But in the induction step, $c$ isn't taken into account, and it breaks down even for the simple case of $c = 1$:
 		\begin{align*}
-		(n+1)^2 = n^2 + 2n + 1 = O(n) + 2n + 1 = O(n+1) \\
-		c \cdot n + 2n + 1 = c \cdot (n+1) \\
-		n + 2n + 1 = 
+		(n+1)^2 = n^2 + 2n + 1 = O(n) + 2n + 1 &= O(n+1) \\
+		c \cdot n + 2n + 1 &= c \cdot (n+1) \\
+		n + 2n + 1 &= n + 1\qquad\qquad (c = 1) \\
+		Contradiction.
 		\end{align*}
+		Therefore, the induction step is flawed, as it did not take the correct definition of big-oh into account. Since the base case sets $c = 1$ or $c \geq 1$, then it is given that this must apply to the induction step which depends on this base case, yet we arrive at a contradiction.
 		
 \end{document}
