@@ -154,7 +154,17 @@
 		Thus, if $\log_2 n^5$ is $o((\log_2 n)^5)$, then $(\log_2 n)^5$ cannot be $O(\log_2 n^5)$.
 		
 		\paragraph{c)}
-		
+		This is true as $\lim\limits_{n\to\infty}n^{1/n}$ converges to 1. To show this,
+		\begin{align*}
+		\lim\limits_{n\to\infty}n^{1/n} &= \lim\limits_{n\to\infty}e^{ln(n^{1/n})} \\
+		&= \lim\limits_{n\to\infty}e^{\frac{1 \cdot ln(n)}{n}} \\
+		&= e^0 = 1
+		\end{align*}
+		Now,
+		\begin{align*}
+		\lim\limits_{n\to\infty}\frac{n^\frac{1}{n}}{1} = 1
+		\end{align*}
+		Therefore, $n^{\frac{1}{n}} = \Theta(1)$.
 		
 		\paragraph{d)}
 		
