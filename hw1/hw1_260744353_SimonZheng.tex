@@ -67,7 +67,8 @@
     	Simply assume each man has a different woman as first choice (and they are respectively the worst choice of the woman). Since the algorithm is ran on the men, each proposes to their first choice one after the other and the women must accept. The men also do not break up any pairings as they are all different. The algorithm terminates, so the rest doesn't even matter.
 		
 		\paragraph{b)}
-		If every woman has their best choice, then there are two cases. One, every man had a different woman as their first choice, and they are respectively also the first choice of their woman. Second case, every man proposed to every woman. But a woman that has been proposed by her first choice will never change partners after that.
+		If every woman has their best choice, then there are two cases. One, every man had a different woman as their first choice, and they are respectively also the first choice of their woman.
+		Second case, every man must have proposed to every woman to all get their last choices. So if we jump to the last man at his last choice where he proposes to a woman, this woman breaks up (as he must be her first choice to end up like we want) with her previous choice. But then this means a man is now free, despite the men having gone through all their choices. The algorithm was proven to never be able to arrive at this state. Therefore, this is not a valid final state if we use this algorithm.
 		
 		\paragraph{c)}
 		\begin{align*}
@@ -135,6 +136,7 @@
 	\section{}
 	
 		\paragraph{a)}
+		This is false, as $2^{2^n} = o(2^2^{n+1})$:
 		\begin{align*}
 		\\
 		\end{align*}
@@ -187,6 +189,15 @@
 		
 		\paragraph{}
 		From the base case, we can see that it should apply for any $c$.
-		But in the induction step,
+		\begin{align*}
+		1 = c \cdot 1
+		\end{align*}
+		so $n_0 = 1$.
+		But in the induction step, $c$ isn't taken into account, and it breaks down even for the simple case of $c = 1$:
+		\begin{align*}
+		(n+1)^2 = n^2 + 2n + 1 = O(n) + 2n + 1 = O(n+1) \\
+		c \cdot n + 2n + 1 = c \cdot (n+1) \\
+		n + 2n + 1 = 
+		\end{align*}
 		
 \end{document}
