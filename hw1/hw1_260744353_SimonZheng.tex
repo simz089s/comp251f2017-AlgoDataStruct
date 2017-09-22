@@ -92,9 +92,7 @@
 		\begin{align*}
 		\sqrt{n} + n\sqrt{n} &= \sqrt{n} (1+n) \\
 		&\leq n(1+n) \\
-		&\leq n(n+n) \\
-		&= n^2 + n^2 \\
-		&= 2n
+		&\leq n(n+n) = n^2 + n^2 = 2n^2
 		\end{align*}
 		Thus, for $c = 2$ and $n_0 = 3$.
 		
@@ -136,11 +134,15 @@
 	\section{}
 	
 		\paragraph{a)}
-		This is false, as $2^{2^n} = o(2^2^{n+1})$:
+		This is false, as $2^{2^n} = o(2^{2^{n+1}})$:
 		\begin{align*}
-		\\
+		&\lim\limits_{n\to\infty}\frac{2^{2^n}}{2^{2^{n+1}}} \\
+		&= \lim\limits_{n\to\infty}\frac{2^{2^n}}{2^{2^n \cdot 2}} \\
+		&= \lim\limits_{n\to\infty}\frac{2 \times ...(2^n\ times)... \times 2}{2 \times ...(2 \cdot 2^n\ times)... \times 2} \\
+		&= \lim\limits_{n\to\infty}\frac{1}{2^{2^n}} \\
+		&= 0
 		\end{align*}
-		,
+		for $n_0 = 0, c = 1$.
 		\begin{align*}
 		\\
 		\end{align*}
