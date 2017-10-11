@@ -43,6 +43,7 @@
 \title{Homework 2}
 \date{October 13$^{\textnormal{th}}$, 2017}
 \lhead{COMP 251}
+%\chead{Homework 2}
 \rhead{Algorithms and Data Structures}
 
 \begin{document}
@@ -50,7 +51,10 @@
 	\thispagestyle{fancy}
 	
 	\section{}
-		There must be at least two new edges. If we have a strongly connected directed graph $G$, and we add a vertex $u$ such that we get $G \cup \{u\}$, then there must be a new edge going from $u$ to any vertex in $G$, and an edge going from any vertex in $G$ to $u$. If we only have the former, then we cannot reach $u$, thus not being a strongly connected graph anymore. If we only have the latter, then we cannot reach any vertex in $G$ from $u$, and it is not a connected graph anymore either. If we have both, then we can reach $u$ from any vertex in $G$, guaranteed by the incoming edge, and we can reach any vertex in $G$ from $u$, guaranteed by the outgoing edge. It is guaranteed, as since we know $G$ is strongly connected, then whichever vertex $u$ goes to, we can go to anywhere else, and whichever vertex goes to $u$, we can get to from anywhere else.
+		A cycle between two vertices in a directed graph is when they each have an edge going to the other.
+		If adding an edge between two vertices already in the same strongly connected component, then nothing changes.
+		If adding an edge between a vertex in a strongly connected component and a vertex not in a strongly component: if this creates a cycle between these two vertices, then the strongly connected component the first vertex is in gains a vertex, but the number of strongly connected components still doesn't change. If the edge does not introduce a cycle between these two vertices, then nothing changes.
+		If adding an edge between two vertices, each in a separate strongly connected component, and it introduces a cycle between these two vertices, then the two separate strongly connected components become a single, bigger one, thus reducing the number of strongly connected components in the graph by one. If the new edge does not introduce a cycle between these two vertices, then nothing changes.
 	
 	\section{}
 		We can represent this situation as a directed graph:
@@ -67,7 +71,7 @@
 		A good way would be to maintain a single collection of people who are known by every single person we have visited. It must \textit{only} include people who do not know anyone and is known by every previous person asked.
 		As such, a good data structure would be a hash table, as we will be doing a lot of searches and deletions.
 		
-		1. Starting from any person, for every other person, ask if they know them. If they do not know anyone, add to set of potential celebrities. Otherwise, add every person they know.
+		1. Starting from any person, for every other person, ask if this person knows them. If they do not know anyone, add to set of potential celebrities. Otherwise, add every person they know.
 		
 		2. Now, for every following person, if they do not know anyone and are not included in the list of potential celebrities, then we are done, as we know there are no celebrities since we have a person who is not a celebrity and cannot know them.
 		
@@ -89,12 +93,15 @@
 		\end{algorithm}
 	
 	\section{}
-	
+		Run a Depth-First Search from the starting airport. At each airport, sort the possible flights (accessible and that you are in time for) by arrival times to their respective destination. Take the one with the earliest arrival time, keep going until final destination is reached, or a dead-end is reached, in which case backtrack.
 		
 	\section{}
-		
+		Run DFS on both stones at the same time. But on every step, check if next step will put them adjacent to each other. If it will, make one find another route (including going back on going into a cycle or loop) by checking other nodes.
 	
 	\section{}
+		Choose any root and run Breadth-First Search to find the two longest paths (the two branches with the longest depths) and sum them. Add 1 to the length to include the root itself.
 		
+	\section{}
+		Run BFS.
 	
 \end{document}
