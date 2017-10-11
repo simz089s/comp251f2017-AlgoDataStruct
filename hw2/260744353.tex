@@ -91,6 +91,17 @@
 			
 			
 		\end{algorithm}
+		\textbf{SECOND WAY:}
+		Start from any person $p_i$.
+		
+		If $p_i$ know no one, mark this person as the potential celebrity, and go to another person $p_k$.
+		If $p_k$ does not know $p_i$, then there are no celebrities.
+		If $p_k$ does know $p_i$, then go to another person and also ask them if they know $p_i$. Do this for everyone left.
+		If everyone knows $p_i$, then $p_i$ is a celebrity.
+		Otherwise there are no celebrities.
+		
+		If $p_i$ does know at least one person, say, $p_j$, then go to $p_j$ (don't ask for the rest). Mark $p_i$ as being asked (and not a celebrity).
+		If $p_j$ does not know $p_i$
 	
 	\section{}
 		Run a Depth-First Search from the starting airport. At each airport, sort the possible flights (accessible and that you are in time for) by arrival times to their respective destination. Take the one with the earliest arrival time, keep going until final destination is reached, or a dead-end is reached, in which case backtrack.
