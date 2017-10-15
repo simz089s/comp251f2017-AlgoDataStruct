@@ -108,13 +108,13 @@
 	
 	In the worst case, you follow a chain of person $u_i$ knowing person $u_{i+1}$ right up to the last person (who is the celebrity) which takes $n-1$ steps. Once you arrive at the celebrity (which we do not know is one), we must ask that person if he knows any of the other people, which takes $n-1$ questions (steps). Then, finally, you must do the reverse which is asking every other person if \textit{they} know the celebrity, which is also $n-1$ steps (questions) by re-visiting each of them and asking.
 	
-	Thus, it is at most $O(3(n-1))=O(n)$.
-	
-	\section{}
-	Run a Depth-First Search from the starting airport. At each airport, sort the possible flights (accessible and that you are in time for) by arrival times to their respective destination. Take the one with the earliest arrival time, keep going until final destination is reached, or a dead-end is reached, in which case backtrack.
+	Thus, it is at most $O(3(n-1))=O(n)$, which is much better.
 	
 	\section{}
 	Dijkstra's algorithm.
+	Run a Depth-First Search from the starting airport. At each airport, sort the possible flights (accessible and that you are in time for) by arrival times to their respective destination. Take the one with the earliest arrival time, keep going until final destination is reached, or a dead-end is reached, in which case backtrack.
+	
+	\section{}
 	Run DFS on both stones at the same time. But on every step, check if next step will put them adjacent to each other. If it will, make one find another route (including going back on going into a cycle or loop) by checking other nodes.
 	
 	\section{}
