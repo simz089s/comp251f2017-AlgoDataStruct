@@ -111,8 +111,13 @@
 	Thus, it is at most $O(3(n-1))=O(n)$, which is much better.
 	
 	\section{}
-	Dijkstra's algorithm.
-	Run a Depth-First Search from the starting airport. At each airport, sort the possible flights (accessible and that you are in time for) by arrival times to their respective destination. Take the one with the earliest arrival time, keep going until final destination is reached, or a dead-end is reached, in which case backtrack.
+	We can imagine the airports as vertices and flights as directed edges but with an extra departure and arrival time.
+	Take all flights that go to $b$ and only consider those that arrive on time (before time $t$). As such we will go in reverse.
+	From those flights, put them into an array (which will be an array of paths represented by a list).
+	If you must branch in the paths, just give a node of the list multiple neighbours.
+	Also keep an array of every flight as an object that keeps track of every time it is visited by a path and which path.
+	If two or more paths visit the same airport, from thereon now, find and only consider the one with the latest departure time, as it will cover the most possibilities, including the earlier ones.
+	
 	
 	\section{}
 	Run DFS on both stones at the same time. But on every step, check if next step will put them adjacent to each other. If it will, make one find another route (including going back on going into a cycle or loop) by checking other nodes.
