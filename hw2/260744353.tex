@@ -52,9 +52,14 @@
 	
 	\section{}
 	A cycle between two vertices in a directed graph is when they each have an edge going to the other.
+	
 	If adding an edge between two vertices already in the same strongly connected component, then nothing changes.
-	If adding an edge between a vertex in a strongly connected component and a vertex not in a strongly component: if this creates a cycle between these two vertices, then the strongly connected component the first vertex is in gains a vertex, but the number of strongly connected components still doesn't change. If the edge does not introduce a cycle between these two vertices, then nothing changes.
-	If adding an edge between two vertices, each in a separate strongly connected component, and it introduces a cycle between these two vertices, then the two separate strongly connected components become a single, bigger one, thus reducing the number of strongly connected components in the graph by one. If the new edge does not introduce a cycle between these two vertices, then nothing changes.
+	
+	If adding an edge between a vertex in a strongly connected component and a vertex not in a strongly component: if this creates a cycle between these two vertices, then the strongly connected component the first vertex is in gains a vertex, but the number of strongly connected components still doesn't change.
+	If the edge does not introduce a cycle between these two vertices, then nothing changes.
+	
+	If adding an edge between two vertices, each in a separate strongly connected component, and it introduces a cycle between these two vertices, then the two separate strongly connected components become a single, bigger one, thus reducing the number of strongly connected components in the graph by one.
+	If the new edge does not introduce a cycle between these two vertices, then nothing changes.
 	
 	\section{}
 	We can represent this situation as a directed graph:
