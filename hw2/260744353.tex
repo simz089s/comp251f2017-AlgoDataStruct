@@ -120,7 +120,20 @@
 	
 	
 	\section{}
-	Run DFS on both stones at the same time. But on every step, check if next step will put them adjacent to each other. If it will, make one find another route (including going back on going into a cycle or loop) by checking other nodes.
+	First, run BFS or DFS simulating both stone movements at the same time.
+	
+	Construct a tree where every vertex stores the position of both stones in the current step.
+	
+	Edges of this tree connect pairs of positions which the stones can move to.
+	
+	Do this for every possible path. When you can move the stones to a previously seen pair of positions, then it simply connects back to that position pair in the tree, so ignore it.
+	
+	Take into account back and forth movements. If both move back to the previous positions, see previous point. Simply ignore it.
+	
+	If you are forced to move back to a previous position, then it is not a possible path.
+	
+	If you end with the reverse pair of the beginning, you're done.
+	Otherwise all possible configurations will run out (since same ones are ignored) such that if you run through all the same positions twice, then you know you are done.
 	
 	\section{}
 	Choose any root and run Breadth-First Search to find the longest path (the furthest vertex).
