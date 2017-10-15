@@ -82,38 +82,50 @@
 	5. Now remove any person in the set that is not mentioned by the current person being asked. If the set becomes empty then we are done, and there are no celebrities.
 	
 	6. Otherwise, continue until no one is left to ask. Either there will be no celebrity or a single person who is the celebrity in the set, as it is impossible to have more than 1 by virtue of having to be know by \textit{every other person}.
-	\begin{center}
-		Algorithm: BDFS(Vertex $u$)
-	\end{center}
-	\begin{algorithm}[caption={}, label={alg1}]
-		Input: A vertex $u$ in a graph $G$
-		Output: 
-		
-		
-	\end{algorithm}
-	\textbf{SECOND WAY:}
+	
+	In the worst case, everyone knows everybody else, such that you start by asking $n-1$ questions, then $n-2$, etc. since you can only eliminate one person every time and will have to ask down to the last person to be sure. So it would be $O(n(n-1)(n-2)...)=O(n!)$ so very slow.
+	\newline\newline
+	\textbf{SECOND WAY:}\newline
 	Start from any person $p_i$.
 	
 	If $p_i$ does not know anyone, mark this person as the potential celebrity, and go to another person $p_k$.
+	
 	If $p_k$ does not know $p_i$, then there are no celebrities.
+	
 	If $p_k$ does know $p_i$, then go to another person and also ask them if they know $p_i$. Do this for everyone left.
+	
 	If everyone knows $p_i$, then $p_i$ is a celebrity.
-	Otherwise there are no celebrities.
+	Otherwise there are no celebrities.\newline
 	
-	If $p_i$ does know at least one person, say, $p_j$, then go to $p_j$ (don't ask for the rest). Mark $p_i$ as being asked (and not a celebrity).
+	If $p_i$ does know at least one person, say, $p_j$, then go to $p_j$ (don't ask for the rest). Mark $p_i$ as being asked (and not a celebrity).\newline
 	
-	Go back to beginning and do the same thing for $p_j$, where the new $p_i$ is the current $p_j$.
+	Go back to beginning and do the same thing for $p_j$, where the new $p_i$ is the current $p_j$.\newline
+	
+	In the worst case, you follow a chain of person $u_i$ knowing person $u_{i+1}$ right up to the last person (who is the celebrity) which takes $n-1$ steps. Once you arrive at the celebrity (which we do not know is one), we must ask that person if he knows any of the other people, which takes $n-1$ questions (steps). Then, finally, you must do the reverse which is asking every other person if \textit{they} know the celebrity, which is also $n-1$ steps (questions) by re-visiting each of them and asking.
+	
+	Thus, it is at most $O(3(n-1))=O(n)$.
 	
 	\section{}
 	Run a Depth-First Search from the starting airport. At each airport, sort the possible flights (accessible and that you are in time for) by arrival times to their respective destination. Take the one with the earliest arrival time, keep going until final destination is reached, or a dead-end is reached, in which case backtrack.
 	
 	\section{}
+	Dijkstra's algorithm.
 	Run DFS on both stones at the same time. But on every step, check if next step will put them adjacent to each other. If it will, make one find another route (including going back on going into a cycle or loop) by checking other nodes.
 	
 	\section{}
-	Choose any root and run Breadth-First Search to find the two longest paths (the two branches with the longest depths) and sum them. Add 1 to the length to include the root itself.
+	Choose any root and run Breadth-First Search to find the longest path (the furthest vertex).
+	
+	You now have its eccentricity, but you do not know if it is the maximum one of the tree (diameter).
+	
+	Simply run BFS again from the furthest vertex found and you will find the vertex furthest from this one, which will give you the diameter.
+	
+	Since a BFS is $O(n+n-1)$ on a tree (a tree has $n-1$ edges) and we only run it twice, we get $O(2(n+n-1))=O(n)$.
 	
 	\section{}
-	Use a BFS
+	Using BFS or DFS, start from vertex with label 1. Run the search backwards (reverse edge direction) such that logically you know every vertex $u_i$ you visit (including itself) are going to have $min_i(u_i)=1$. Thus, every time you visit a vertex, mark its $min$ as the starting vertex (using an array or if each vertex is an object with an attribute $min$ or etc.).
+	
+	Then keep doing this by starting on the next unvisited vertex with the smallest label until every vertex has a $min$.
+	
+	This will be $O(n)$, because you only run it once per directionally connected component, as every vertex in a directionally connected component should be visited and have their $min$ found once. Let's say worst case every vertex is disconnected, you have to run it $n$ times, but each search will be $O(1)$, so it is proportional and cancels out to $O(n)$.
 	
 \end{document}
