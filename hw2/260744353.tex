@@ -41,7 +41,7 @@
 
 \author{Simon Zheng\\260744353}
 \title{Homework 2}
-\date{October 13$^{\textnormal{th}}$, 2017}
+\date{October 15$^{\textnormal{th}}$, 2017}
 \lhead{COMP 251}
 %\chead{Homework 2}
 \rhead{Algorithms and Data Structures}
@@ -62,35 +62,6 @@
 	If the new edge does not introduce a cycle between these two vertices, then nothing changes.
 	
 	\section{}
-	We can represent this situation as a directed graph:
-	
-	Each person is a vertex;
-	
-	If person $u$ knows person $v$, then there exists an edge going from $u$ to $v$.\newline
-	As such, a \textit{celebrity} is a vertex $c$ with an outdegree of $0$ and an indegree of $|V| - 1$, where $|V|$ is the total number of vertices (people).
-	
-	Now, the question forces us to ask every single person at least once to know who they know. This means visiting every vertex at least once (no matter if they are connected or not as we have to ask to know it), so the algorithm will be at least $O(n)$.
-	We know the celebrity must know no one. With this, we can immediately exclude a vertex (person) as a celebrity the moment they know someone. But we must still know who else they know, as to identify the celebrity who is known by everyone.
-	Fortunately, every time we visit a vertex (ask a person who they know), we can exclude anyone who wasn't previously mentioned, as the celebrity must be known by all.
-	
-	A good way would be to maintain a single collection of people who are known by every single person we have visited. It must \textit{only} include people who do not know anyone and is known by every previous person asked.
-	As such, a good data structure would be a hash table, as we will be doing a lot of searches and deletions.
-	
-	1. Starting from any person, for every other person, ask if this person knows them. If they do not know anyone, add to set of potential celebrities. Otherwise, add every person they know.
-	
-	2. Now, for every following person, if they do not know anyone and are not included in the list of potential celebrities, then we are done, as we know there are no celebrities since we have a person who is not a celebrity and cannot know them.
-	
-	3. If they do not know anyone but are a potential celebrity, then simply go to the next person.
-	
-	4. If they know anyone and are a potential celebrity, remove them from the set of potential celebrities.
-	
-	5. Now remove any person in the set that is not mentioned by the current person being asked. If the set becomes empty then we are done, and there are no celebrities.
-	
-	6. Otherwise, continue until no one is left to ask. Either there will be no celebrity or a single person who is the celebrity in the set, as it is impossible to have more than 1 by virtue of having to be know by \textit{every other person}.
-	
-	In the worst case, everyone knows everybody else, such that you start by asking $n-1$ questions, then $n-2$, etc. since you can only eliminate one person every time and will have to ask down to the last person to be sure. So it would be $O(n(n-1)(n-2)...)=O(n!)$ so very slow.
-	\newline\newline
-	\textbf{SECOND WAY:}\newline
 	Start from any person $p_i$.
 	
 	If $p_i$ does not know anyone, mark this person as the potential celebrity, and go to another person $p_k$.
@@ -108,7 +79,7 @@
 	
 	In the worst case, you follow a chain of person $u_i$ knowing person $u_{i+1}$ right up to the last person (who is the celebrity) which takes $n-1$ steps. Once you arrive at the celebrity (which we do not know is one), we must ask that person if he knows any of the other people, which takes $n-1$ questions (steps). Then, finally, you must do the reverse which is asking every other person if \textit{they} know the celebrity, which is also $n-1$ steps (questions) by re-visiting each of them and asking.
 	
-	Thus, it is at most $O(3(n-1))=O(n)$, which is much better.
+	Thus, it is at most $O(3(n-1))=O(n)$.
 	
 	\section{}
 	We can imagine the airports as vertices and flights as directed edges but with an extra departure and arrival time.
@@ -134,6 +105,8 @@
 	
 	If you end with the reverse pair of the beginning, you're done.
 	Otherwise all possible configurations will run out (since same ones are ignored) such that if you run through all the same positions twice, then you know you are done.
+	
+	Construct the tree with a hash table of pre-existing pairs to know if it already exists in constant time.
 	
 	\section{}
 	Choose any root and run Breadth-First Search to find the longest path (the furthest vertex).
