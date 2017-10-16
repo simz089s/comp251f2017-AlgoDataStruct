@@ -83,12 +83,15 @@
 	
 	\section{}
 	We can imagine the airports as vertices and flights as directed edges but with an extra departure and arrival time.
-	Take all flights that go to $b$ and only consider those that arrive on time (before time $t$). As such we will go in reverse.
-	From those flights, put them into an array (which will be an array of paths represented by a list).
-	If you must branch in the paths, just give a node of the list multiple neighbours.
-	Also keep an array of every flight as an object that keeps track of every time it is visited by a path and which path.
-	If two or more paths visit the same airport, from thereon now, find and only consider the one with the latest departure time, as it will cover the most possibilities, including the earlier ones.
 	
+	Take all flights that go to $b$ and only consider those that arrive on time (before time $t$). As such we will go in reverse.
+	
+	From those flights, construct a tree of possible paths. Keep track of the current time of the path that's being tried.
+	At every airport, only consider valid flights with arrival times preceding the departure time of the flight you came from (as we are going in reverse).
+	
+	Do not revisit airports. If you visit an airport that's already been visited from the same flight but in another path, pick the one with latest departure time, as it covers the cases of the earlier one and possibly more, and ignore the other.
+	
+	Simply give the first path that reaches the source (since we started in reverse from destination).
 	
 	\section{}
 	First, run BFS or DFS simulating both stone movements at the same time.
@@ -104,6 +107,7 @@
 	If you are forced to move back to a previous position, then it is not a possible path.
 	
 	If you end with the reverse pair of the beginning, you're done.
+	When you're done, run a simple BFS on the constructed tree to get the shortest path which reached the reversed pair.
 	Otherwise all possible configurations will run out (since same ones are ignored) such that if you run through all the same positions twice, then you know you are done.
 	
 	Construct the tree with a hash table of pre-existing pairs to know if it already exists in constant time.
@@ -112,6 +116,10 @@
 	Choose any root and run Breadth-First Search to find the longest path (the furthest vertex).
 	
 	You now have its eccentricity, but you do not know if it is the maximum one of the tree (diameter).
+	
+	You know this vertex will be one of the ends of the diameter, because the longest path from any root in a tree will always find be either vertex of the diameter.
+	
+	The vertex at one end of the diameter is the furthest from half of the vertices, and the vertex at the other end is the furthest form the other half, otherwise the path between the two would not be the diameter of the tree.
 	
 	Simply run BFS again from the furthest vertex found and you will find the vertex furthest from this one, which will give you the diameter.
 	
