@@ -77,9 +77,11 @@
 	
 	Go back to beginning and do the same thing for $p_j$, where the new $p_i$ is the current $p_j$.\newline
 	
-	In the worst case, you follow a chain of person $u_i$ knowing person $u_{i+1}$ right up to the last person (who is the celebrity) which takes $n-1$ steps. Once you arrive at the celebrity (which we do not know is one), we must ask that person if he knows any of the other people, which takes $n-1$ questions (steps). Then, finally, you must do the reverse which is asking every other person if \textit{they} know the celebrity, which is also $n-1$ steps (questions) by re-visiting each of them and asking.
+	In the worst case, we follow a chain of person $u_i$ knowing person $u_{i+1}$ right up to the last person (who is the celebrity) which takes $n-1$ steps (we haven't asked the last person/celebrity anything yet).
+	Once we arrive at the celebrity (which we do not know is one), we must ask that person if he knows any of the other people, which takes $n-1$ questions (steps) since we of course don't ask about the person itself.
+	Then, finally, we must do the reverse which is asking every other person if \textit{they} know the celebrity, which is also $n-1$ steps (questions), as once again we exclude the celebrity themselves, by re-visiting each of them and asking.
 	
-	Thus, it is at most $O(3(n-1))=O(n)$.
+	Thus, it is at most $3(n-1)=3n-3$ steps ($O(n)$).
 	
 	\section{}
 	We can imagine the airports as vertices and flights as directed edges but with an extra departure and arrival time.
