@@ -78,7 +78,7 @@
 	\section{}
 		First, include all leaves as no 2 leaves can be adjacent in a graph with more than 2 vertices (cases with a graph containing less than 3 vertices are trivial). Then, with the remaining vertices, 2-colour them and keep the biggest set.
 		
-		Between two adjacent vertices where one is a leaf (single neighbour) and one is an internal vertex (more than 1 neighbour), choosing the leaf allows us to also choose any of the internal vertex's neighbours, while choosing the internal vertex removes the possibility of choosing the leaf or any of it's neighbours.
+		For $n>2$, every leaf will only have an internal vertex by the property of being in a tree. Between two adjacent vertices where one is a leaf (single neighbour) and one is an internal vertex (more than 1 neighbour), choosing the leaf allows us to also choose any of the internal vertex's neighbours, while choosing the internal vertex removes the possibility of choosing the leaf or any of it's neighbours.
 		Thus, along with the fact that no two leaves can be adjacent for $n>2$, choosing the leaf is more advantageous and will allow for a bigger set.
 		
 	\section{}
@@ -90,7 +90,15 @@
 		Now, applies this to every successive pair of jobs from ($t_1$, $t_2$), ($t_2$, $t_3$), ... , ($t_{n-1}$, $t_n$) and we will get the optimal solution, which is exactly putting them in increasing order according to their processing time.
 		
 	\section{}
-		?
+		Using a proof by induction, we will show that the algorithm works with 2 processors with the conditions in the question and thus show it works for $n+1$ processors (our base case is one processor which is proven in the previous question).
+		
+		Beginning with both processors free and a set of jobs, pick two jobs and give them to the processors. For this basic case it is obvious that picking the shortest job is optimal as the average finishing time is $\frac{t_1 + t_2}{2}$. It is a similar reasoning to the previous question.
+		
+		Now, for the next job, if the two previous jobs had the same length then we are back to the previous case.
+		Otherwise we have a processor that finished first, and therefore was available sooner, and the other one that finished after, and therefore had a longer job.
+		
+		If we give the next job (that takes time $t_i$) to the processor that finished sooner (with, say, finishing time $f_1$), then the total finishing time is now $f_1 + t_i$.
+		If we give it to the processor that finished later at time $f_2$ then it is $f_2 + t_i$.
 		
 	\section{}
 		?
