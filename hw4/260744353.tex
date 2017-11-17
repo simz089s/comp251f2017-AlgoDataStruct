@@ -1,0 +1,135 @@
+\documentclass[11pt,letterpaper]{article}
+%\documentclass[11pt,letterpaper]{exam}
+\usepackage[latin1]{inputenc}
+\usepackage[left=3.00cm, right=3.00cm, top=3.00cm, bottom=3.00cm]{geometry}
+
+\usepackage{amsmath}
+%\usepackage{amsthm}
+%\usepackage{cancel}
+\usepackage{mathtools}
+%\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+%\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\usepackage{color}
+%\usepackage{xcolor}
+%\usepackage{graphicx}
+\usepackage{caption}
+%\definecolor{acolour}{rgb}{0,0.0,0}
+
+%\usepackage{url}
+\usepackage{listings}
+%\usepackage[]{algorithm2e}
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	%frame=tb,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+\newcounter{nalg}[section] % defines algorithm counter for chapter-level
+\renewcommand{\thenalg}{\thechapter .\arabic{nalg}} %defines appearance of the algorithm counter
+\DeclareCaptionLabelFormat{algocaption}{Algorithm \thenalg} % defines a new caption label as Algorithm x.y
+
+\lstnewenvironment{algorithm}[1][] %defines the algorithm listing environment
+{   
+    \refstepcounter{nalg} %increments algorithm number
+    \captionsetup{labelformat=algocaption,labelsep=colon} %defines the caption setup for: it uses label format as the declared caption label above and makes label and caption text to be separated by a ':'
+    \lstset{ %this is the stype
+        mathescape=true,
+        frame=tB,
+        numbers=left, 
+        numberstyle=\tiny,
+        basicstyle=\scriptsize, 
+        keywordstyle=\color{blue}\bfseries\em,
+        keywords={,input, output, return, datatype, function, in, if, else, foreach, while, begin, end, true, false, int, for, then, } %add the keywords you want, or load a language as Rubens explains in his comment above.
+        numbers=left,
+        xleftmargin=.02\textwidth,
+        #1 % this is to add specific settings to an usage of this environment (for instnce, the caption and referable label)
+    }
+}
+{}
+
+\author{Simon Zheng\\260744353}
+\title{Homework $0$}
+\date{$MONTH$ $DAY$$^{\textnormal{SUFFIX}}$, $YEAR$}
+\lhead{$COURSE CODE$}
+%\chead{Homework $$}
+\rhead{$COURSE NAME$}
+
+\begin{document}
+	\maketitle
+	\thispagestyle{fancy}
+	
+	\section{}
+		\begin{center}
+			Algorithm: BDFS(Vertex $u$)
+		\end{center}
+		\begin{algorithm}[caption={}, label={alg1}]
+			Input: A vertex $u$ in a graph $G$
+			Output: 
+			
+			
+		\end{algorithm}
+	
+	\section{Master Theorem}
+		kms
+	
+	\section{Stock}
+		Just fucking kill me now.
+	
+	\section{Huffman code tree}
+		
+	
+	\section{Compression scheme}
+		By the pidgenhole principle.
+		
+	\section{Tile board}
+		Keep recursively dividing the board into 4 smaller and smaller "quadrants" (as it is of size $2^n \times 2^n$) until you get to single tiles.
+		
+		We will start from the missing cell (a single tile).
+		
+		First, "merge" back up one level so you get $2 \times 2$ quadrants.
+		If a quadrant contains the empty cell, then there must be 3 empty cells in an L shape, so put a tile on it.
+		
+		Now, together with the 3 other quadrants (that will form a bigger quadrant in the "upper" recursion level), put a tile in the center of all 4.
+		Since the quadrant containing the empty cell is filled, the center 4 cells will have one filled cell, and the 3 others will be empty and in an L shape, just like previously, so fill them with a tile.
+		
+		Doing this means that the 3 other quadrants (that didn't contain the empty cell) are going to have one cell filled, and will each have 3 empty cells left in an L shape, so fill them with tiles.
+		
+		Keep doing this recursively, where in every recursion layer you always start by filling the center 4 cells with a tile, as there will be a single cell filled previously in a lower recursion level.
+		
+		This works by induction.
+		
+		If $2^n \times 2^n$ is the dimension of the board:
+		
+		Base case $P(n)=P(1)$: We have a $2 \times 2$ square board. Remove any of the cells. You will be left with 3 cells in an L shape.
+		
+		Induction hypothesis: For any $2^n \times 2^n$ square board with a single missing cell, you can fill it with L-shaped 3-cell tiles.
+		
+		Induction step $P(n+1)$: If the previous board P(n) is part of a bigger $2^n \times 2^n$ board, then it must be with 3 other same size board in a quadrant fashion (to form a square). We know that they are all empty except for the "sub-board" we previously filled. Therefore, at the center of the "super-board", there must be 4 cells which are the corners of each sub-board that touches each other, with one that filled or has the missing cell. We can put a tile on the 3 others, and as such the 3 other sub-board will each have a single cell filled. Thus, to fill the 3 other boards, we do the same thing as the first as it is the same case, just that the newly filled cells act like the missing cell in the first sub-board.
+	
+	\section{Triple cycles}
+		Make an adjacency matrix.
+		One side is outgoing, other incoming. But this doesn't matter.
+		
+		Cube it to get paths of 3.
+		The diagonal is where paths came back to the original vertex of that column/row, so just sum it (get the trace) to get all triple cycles.
+		
+		If a->b->c->a and b->c->a->b are considered the same triple, then divide the trace by 3.
+	
+\end{document}
