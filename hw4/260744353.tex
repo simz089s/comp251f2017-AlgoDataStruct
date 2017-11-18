@@ -87,16 +87,34 @@
 		\end{algorithm}
 	
 	\section{Master Theorem}
-		kms
+		\begin{align*}
+			\
+		\end{align*}
 	
 	\section{Stock}
-		Just fucking kill me now.
+		Recursively divide the sequence in half.
+		When merging, keep track of the minimum price found and its index and take the differences between each pair of merged prices.
+		Also keep track of a global maximal difference found.
 	
 	\section{Huffman code tree}
 		
 	
 	\section{Compression scheme}
-		By the pidgenhole principle.
+		By the pigeonhole principle.
+		
+		We have $256^n = 2^{8n}$ possible strings for an n-character file (ASCII is 8-bit which gives us 256 distinct characters).
+		
+		We have an 8n-character file that we try to compress using $C$.
+		When compressing we want to be able to reliably decompress it so we need a unique mapping for every distinct file (combination of string).
+		
+		We need $2^{8n}$ bits to represent 8n distinct characters.
+		But these characters can be arranged into $2^{8n}$ distinct ways.
+		The best $C$ can do is getting down to $2^n$ bytes.
+		
+		Thus, the actual number of possibilities $C$ must handle is from $2^n$ to $2^{8n}$, including the case where it compresses down to $2^n$ bytes.
+		This means $2^{8n} - 2^n + 2^{n-1}$ (because the minimum/best case $2^n$ is included).
+		
+		Therefore, using the pigeonhole principle, since a compression algorithm is limited by the number of characters in this way, it cannot possibly do better than $8n$.
 		
 	\section{Tile board}
 		Keep recursively dividing the board into 4 smaller and smaller "quadrants" (as it is of size $2^n \times 2^n$) until you get to single tiles.
