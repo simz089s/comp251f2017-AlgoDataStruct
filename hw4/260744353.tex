@@ -81,10 +81,13 @@
 		\end{align*}
 	
 	\section{Stock}
-		Recursively divide the sequence in half.
-		When merging, keep track of the minimum price found and its index and take the differences between each pair of merged prices.
-		Also keep track of a global maximal difference found.
-	
+		Recursively divide the sequence in half until you only have sub-arrays of length 1 or 2.
+		For each sub-array of length 2, find the difference.
+		Keep track of a global maximal difference found (and the indices of the two values) and update it every time a difference is computed.
+		
+		Now merge back.
+		At each merge, take the difference between
+		
 	\section{Huffman code tree}
 		
 	
