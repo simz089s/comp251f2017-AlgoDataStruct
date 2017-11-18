@@ -75,17 +75,6 @@
 	\maketitle
 	\thispagestyle{fancy}
 	
-	\section{}
-		\begin{center}
-			Algorithm: BDFS(Vertex $u$)
-		\end{center}
-		\begin{algorithm}[caption={}, label={alg1}]
-			Input: A vertex $u$ in a graph $G$
-			Output: 
-			
-			
-		\end{algorithm}
-	
 	\section{Master Theorem}
 		\begin{align*}
 			\
@@ -142,11 +131,18 @@
 		Induction step $P(n+1)$: If the previous board P(n) is part of a bigger $2^n \times 2^n$ board, then it must be with 3 other same size board in a quadrant fashion (to form a square). We know that they are all empty except for the "sub-board" we previously filled. Therefore, at the center of the "super-board", there must be 4 cells which are the corners of each sub-board that touches each other, with one that filled or has the missing cell. We can put a tile on the 3 others, and as such the 3 other sub-board will each have a single cell filled. Thus, to fill the 3 other boards, we do the same thing as the first as it is the same case, just that the newly filled cells act like the missing cell in the first sub-board.
 	
 	\section{Triple cycles}
-		Make an adjacency matrix.
-		One side is outgoing, other incoming. But this doesn't matter.
+		Make an adjacency matrix of the outgoing edges.
 		
-		Cube it to get paths of 3.
-		The diagonal is where paths came back to the original vertex of that column/row, so just sum it (get the trace) to get all triple cycles.
+		We can think of marking adjacent vertices with a 1 as saying there is a path of length 1 between them.
+		
+		We also know that matrix multiplication of two $n \times n$ matrices, where $i$ is a row and $j$ is a column, each $i,j$-th entry of the resulting matrix is:
+		$\sum_{k=1}^{n}A_{ik}B_{kj}$
+		where we sum the entries over $k$ every time.
+		
+		So multiplying an adjacency matrix by itself $n$ times is the equivalent of finding all the paths of length $n$ as if a path "stops" it becomes 0, but if it continues it will get added (the path to the next vertex).
+		
+		So what we want is to cube it to get paths of length 3.
+		The diagonal is where paths came back to the original vertex of that column/row, as it contains the entries corresponding to the paths of each of the vertices to themselves, so just sum it (get the trace) to get all triple cycles.
 		
 		If a->b->c->a and b->c->a->b are considered the same triple, then divide the trace by 3.
 	
