@@ -89,7 +89,11 @@
 		At each merge, take the difference between
 		
 	\section{Huffman code tree}
-		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=360px,height=360px,keepaspectratio]{huffmancodetree.jpg}
+			\linespread{0.8}\caption{Huffman code tree.}
+		\end{figure}
 	
 	\section{Compression scheme}
 		By the pigeonhole principle.
@@ -123,8 +127,8 @@
 		
 		Keep doing this recursively, where in every recursion layer you always start by filling the center 4 cells with a tile, as there will be a single cell filled previously in a lower recursion level.
 		
-		This works by induction.
-		
+		We can use a double array matrix and separate them by index ranges (e.g. for $0 \leq i,j \le 4$, etc.) and start from the already filled sub-board (the empty cell in the base case) and then fill the quadrants clockwise (after putting the center tile).\newline
+		\linebreak This works by induction.
 		If $2^n \times 2^n$ is the dimension of the board:
 		
 		Base case $P(n)=P(1)$: We have a $2 \times 2$ square board. Remove any of the cells. You will be left with 3 cells in an L shape.
@@ -132,6 +136,8 @@
 		Induction hypothesis: For any $2^n \times 2^n$ square board with a single missing cell, you can fill it with L-shaped 3-cell tiles.
 		
 		Induction step $P(n+1)$: If the previous board P(n) is part of a bigger $2^n \times 2^n$ board, then it must be with 3 other same size board in a quadrant fashion (to form a square). We know that they are all empty except for the "sub-board" we previously filled. Therefore, at the center of the "super-board", there must be 4 cells which are the corners of each sub-board that touches each other, with one that filled or has the missing cell. We can put a tile on the 3 others, and as such the 3 other sub-board will each have a single cell filled. Thus, to fill the 3 other boards, we do the same thing as the first as it is the same case, just that the newly filled cells act like the missing cell in the first sub-board.
+		
+		As for the running time, if $n$ is the number of cells, which is a power of 4, then
 	
 	\section{Triple cycles}
 		Make an adjacency matrix of the outgoing edges.
