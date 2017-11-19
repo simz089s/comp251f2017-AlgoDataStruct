@@ -94,23 +94,47 @@
 			\includegraphics[width=360px,height=360px,keepaspectratio]{huffmancodetree.jpg}
 			\linespread{0.8}\caption{Huffman code tree.}
 		\end{figure}
+		"that rug really tied the room together."
+		\newline
+		100 1100 0010 100 101 010 00010 0011 010 111 0010 0000 0000 00011 101 100 01100 111 01101 101 100 1100 111 101 010 1101 1101 01110 101 100 1101 0011 111 100 1100 111 010 01111
 	
 	\section{Compression scheme}
 		By the pigeonhole principle.
-		
+		\newline
+		\newline
 		We have $256^n = 2^{8n}$ possible strings for an n-character file (ASCII is 8-bit which gives us 256 distinct characters).
 		
-		We have an 8n-character file that we try to compress using $C$.
-		When compressing we want to be able to reliably decompress it so we need a unique mapping for every distinct file (combination of string).
+		To be able to compress some files to smaller sizes yet still be an injective map, a single compression scheme must map other files into bigger sizes.
+		Otherwise, we could infinitely compress a file by running the compression scheme's algorithm repeatedly.
 		
-		We need $2^{8n}$ bits to represent 8n distinct characters.
+		When compressing we want to be able to reliably decompress it (no loss of information) so we need a unique mapping for every distinct file (combination of string) which is why it must be injective (or at least bijective).
+		
+		In an $n$-byte file there are $8n$ bits to represent all 256 distinct characters in ASCII.
+		As such, there are $2^n$ distinct possible files of $n$-characters where each character can be one of $2^8$ distinct characters.
+		
+		With a lossless compression (injective map), each permutation of character and each change of even a single character must map to a distinct encoding.
+		
+		We can already have an intuition of why there must exist a string (file) $x$ such that $C(x)$ gives an equal or greater size, if we mapped other files/strings to distinct smaller one.
+		
+		We compress $2^{8n}$ bits into a smaller size (less bits).
+		But, as explained previously, there also has to be $2^{8n}$ possible mappings to distinguish between them, so the set of inputs has the same size as the set of outputs.
+		
+		But a compression scheme tries to map the set of all inputs into a smaller set of outputs since, if it compresses, with less bits, there are less possible distinct elements.
+		Therefore, we get a surjection and some strings will get mapped to the same output, thus we get collisions.
+		
+		The only way around this, is if we let certain strings be mapped to the same length or longer, since we need extra bits for when we run out of the smaller number off bits which were already mapped onto by compressed files.
+		\newline
+		\newline
+		So, to recap:
+		\newline
+		\newline
+		We need $2^{8n}$ bits to represent $n$ distinct characters in binary.
 		But these characters can be arranged into $2^{8n}$ distinct ways.
-		The best $C$ can do is getting down to $2^n$ bytes.
+		The best $C$ can do is getting down to $2^n$ bits (after all, we still have to keep the $n$ characters somehow).
 		
-		Thus, the actual number of possibilities $C$ must handle is from $2^n$ to $2^{8n}$, including the case where it compresses down to $2^n$ bytes.
-		This means $2^{8n} - 2^n + 2^{n-1}$ (because the minimum/best case $2^n$ is included).
-		
-		Therefore, using the pigeonhole principle, since a compression algorithm is limited by the number of characters in this way, it cannot possibly do better than $8n$.
+		But this means only $2^{8n} - 2^n$ distinct possible files are covered.
+		For the rest, we need more bits to represent them distinctly.
+		Thus, by the pigeonhole principle, there must be \textit{some} $x$ in $\Omega^n$ such that $\left|C(x)\right| \geq 8n$.
 		
 	\section{Tile board}
 		Keep recursively dividing the board into 4 smaller and smaller "quadrants" (as it is of size $2^n \times 2^n$) until you get to single tiles.
@@ -150,9 +174,9 @@
 		
 		So multiplying an adjacency matrix by itself $n$ times is the equivalent of finding all the paths of length $n$ as if a path "stops" it becomes 0, but if it continues it will get added (the path to the next vertex).
 		
-		So what we want is to cube it to get paths of length 3.
+		So what we want is to cube it to get paths of length 3, which is $o(n^3)$.
 		The diagonal is where paths came back to the original vertex of that column/row, as it contains the entries corresponding to the paths of each of the vertices to themselves, so just sum it (get the trace) to get all triple cycles.
 		
-		If a->b->c->a and b->c->a->b are considered the same triple, then divide the trace by 3.
+		If $a \rightarrow b \rightarrow c \rightarrow a$ and $b \rightarrow c \rightarrow a \rightarrow b$ are considered the same triple (also same for when starting at $c$), then divide the trace by 3.
 	
 \end{document}
