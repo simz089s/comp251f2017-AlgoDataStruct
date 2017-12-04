@@ -80,7 +80,10 @@
 		
 		For this formula, we must check the next 12 closest points.
 		
-		When create the "boxes", where we the two sides of the dividing line into 6 boxes of equal size each of $\frac{1}{2}\alpha$
+		Because the computed $\alpha$ is not the "real" distance anymore, but the height and the width distance added together.
+		This makes it so that the possible distance between two points and their position relative to the boxes is increased.% $\frac{1}{2}\alpha$
+		
+		The recurrence of the algorithm is the same, so it is still $O(n\log n)$ (also according to Master Theorem for Divide-And-Conquer).
 	
 	\section{Cell-hopping frog}
 		We can make some assumptions from the statement "\textit{At every step, the frog can jump from its current cell $(i, j)$ to any cell $(i\prime , j\prime)$ that satisfies $i\prime + j\prime = i + j + 1$}":
@@ -187,7 +190,9 @@
 		
 		Then, starting from the beginning (earliest deadline), and going job by job (so deadline by deadline), add up the profits and processing times, so every job gets added to one big "cumulative" job and keep track of it (its cumulative processing time, deadline, and profit).
 		
-		In more details, at every $i$-th job when considering it, choose the cumulative job to be the max between the previous cumulative job ($i-1$-ith) plus the current $i$-th job, or
+		In more details, at every $i$-th job when considering it, choose the cumulative job to be the max between the previous cumulative job ($i-1$-ith) plus the current $i$-th job (if the deadlines and processing times make a possible combination), or if they overlap which one has higher profit for the processing time.
+		
+		Thus, the running time is $O(n \log n)$.
 	
 	\section{Currency exchange}
 		So we know that an $\alpha$ value between 0 and 1 is a disadvantageous exchange, and anything greater than 1 is advantageous.
