@@ -56,7 +56,7 @@
         numberstyle=\tiny,
         basicstyle=\scriptsize, 
         keywordstyle=\color{blue}\bfseries\em,
-        keywords={,input, output, return, datatype, function, in, if, else, foreach, while, begin, end, true, false, int, for, forall, then, } %add the keywords you want, or load a language as Rubens explains in his comment above.
+        keywords={,input, output, return, datatype, function, in, If, else, foreach, while, begin, end, true, false, int, For, ForAll, then, } %add the keywords you want, or load a language as Rubens explains in his comment above.
         numbers=left,
         xleftmargin=.02\textwidth,
         #1 % this is to add specific settings to an usage of this environment (for instnce, the caption and referable label)
@@ -78,7 +78,9 @@
 	\section{Closest pair of points}
 		The algorithm should mostly stay the same except at the part where we must search for a possible closer pair of points crossing the middle line.
 		
-		When create the "boxes", we
+		For this formula, we must check the next 12 closest points.
+		
+		When create the "boxes", where we the two sides of the dividing line into 6 boxes of equal size each of $\frac{1}{2}\alpha$
 	
 	\section{Cell-hopping frog}
 		We can make some assumptions from the statement "\textit{At every step, the frog can jump from its current cell $(i, j)$ to any cell $(i\prime , j\prime)$ that satisfies $i\prime + j\prime = i + j + 1$}":
@@ -177,6 +179,8 @@
 		Creating the table is $O(n^2)$, but having to process and go through the previous sequences every time makes it $O(n^3)$.
 		To clarify, creating the first row is $O(n)$ since we just concatenate the current term to the previous subsequence.
 		The second row takes $O(n^2)$, same for every successive row, so $O(n^3)$.
+		
+		We can run an $O(n)$ algorithm that checks if it is a monotonically increasing sequence (which means there are no solutions) or the main algorithm will just return empty.
 	
 	\section{Job processing with weights and deadlines}
 		First, we sort the jobs by deadline (in a list or an array) and by processing time (this can be done in the same sort operation, so $O(n\log n))$.
@@ -201,12 +205,23 @@
 		\begin{algorithm}[caption={}, label={alg1}]
 			$D[s] = 0$ and $D[v] = \infty$ where $v \neq s$
 			
-			for ($i = 1$ to $n-1$)
-				forall ($v$)
+			For $i = 1$ to $n-1$
+				ForAll $v$
 					x = $min_{wv\in E} c_{wv} +D[w]$
-					if ($x < D[v]$)
+					If $x < D[v]$
 						$D[v] = x$
+					EndIf
+				EndFor
+			EndFor
 		\end{algorithm}
+		
+		As seen in class, the minimum shortest path has at most $n - 1$ length where $n$ is the number of nodes.
+		If values are still being updated after visiting more, we know we have a negative cycle.
+		
+		But in this case we \textit{want} find any negative cycle.
+		As such, when we detect a negative cycle, we just take the first point that gets repeatedly updated as the starting point and the following nodes are part of the path needed to get a negative cycle.
+		
+		Thus, we get the answer in $O(nm)$ since it is the same as the normal algorithm.
 	
 		The running time is the same, and added with converting the weights to the negative logarithm, this gives us $O(n+m) + O(nm) = O(nm)$.
 	
@@ -225,5 +240,7 @@
 		The operation of adding can be done at the same time as when we get all the neighbours in a standard $BFS$ algorithm and is $O(1)$ for each.
 		
 		Thus, the running time stays $O(n + m)$ where $n, m$ are respectively the number of vertices and edges.
+		
+		If $BFS$ never reaches $t$, then there is no solution.
 	
 \end{document}
